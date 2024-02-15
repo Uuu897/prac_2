@@ -56,5 +56,25 @@ const app = new Vue({
             } else if (progress >= 0.5 && column.id === 1) {
                 this.moveNote(column.id, column.id + 1, note);
             }
+
+            if (column.id === 1) {
+                let doneItemsFirstColumn = 0;
+                for (const note of this.columns[0].notes) {
+                    doneItemsFirstColumn += note.items.filter(item => item.done).length;
+                }
+                this.doneItemsFirstColumn = doneItemsFirstColumn;
             }
+            let progressFirstColumn = this.doneItemsFirstColumn / totalItems
+
+            const secondColumn = this.columns.find(col => col.id === 2);
+            if (secondColumn.notes.length >= secondColumn.maxCards && progressFirstColumn >= 0.5) {
+                this.isFirstColumnBlocked = true
+
+            }
+            else {
+                this.isFirstColumnBlocked = false;
+
+            }
+        },
+
 });
