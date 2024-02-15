@@ -12,6 +12,31 @@
 <body>
 <h2>Оставь заметку</h2>
 <div id="app">
+    <div v-for="column in columns" :key="column.id" class="column">
+        <div v-for="note in column.notes" :key="note.id" class="note">
+            <h2>{{ note.title }}</h2>
+            <p>{{ note.content }}</p>
+            <ul>
+                <li v-for="(item, index) in note.items" :key="index">
+                    <input type="checkbox" v-model="item.done" @change="checkProgress(note, column)" :disabled="column.id === 1 && isFirstColumnBlocked">
+                    <input v-model="item.title" placeholder="" :disabled="column.id === 1 && isFirstColumnBlocked">
+                </li>
+            </ul>
+            <p v-if="note.completedAt">Completion time: {{ note.completedAt }}</p>
+        </div>
+        <div class="input-section">
+            <input v-model="newNoteTitle" placeholder="Название" v-if="column.id === 1 && !isFirstColumnBlocked">
+            <input v-model="newItemText" placeholder="Текст заметки" v-if="column.id === 1 && !isFirstColumnBlocked">
+        </div>
+        <div></div>
+        <div class="button-section">
+            <button v-if="column.id === 1 && (!column.maxCards || column.notes.length < column.maxCards) && !isFirstColumnBlocked" @click="addNote(column.id)">
+                Добавить заметку
+            </button>
+            <button @click="addItem(column.id)" v-if="column.id === 1 && (!column.maxCards || column.notes.length < column.maxCards) && !isFirstColumnBlocked">
+                Добавить строку
+            </button>
+        </div>
 </div>
 </div>
 
