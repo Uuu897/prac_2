@@ -29,5 +29,21 @@ const app = new Vue({
                 this.newNoteContent = '';
             }
         },
+        addItem(columnId) {
+            const column = this.columns.find(col => col.id === columnId);
+            if (column && column.notes.length > 0) {
+                const note = column.notes[column.notes.length - 1];
+                note.items.push({ text: this.newItemText, done: false });
+                this.newItemText = '';
+            }
+
+
+        },
+        addListItem(note) {
+            note.items.push({
+                text: '',
+                done: false
+            });
+        },
     }
 });
