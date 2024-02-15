@@ -1,4 +1,4 @@
-const app = new Vue({
+app = new Vue({
     el: '#app',
     data: {
         columns: [
@@ -76,6 +76,19 @@ const app = new Vue({
 
             }
         },
+
+        moveNote(sourceColumnId, targetColumnId, note) {
+            const sourceColumn = this.columns.find(col => col.id === sourceColumnId);
+            const targetColumn = this.columns.find(col => col.id === targetColumnId);
+            if (sourceColumn && targetColumn && (!targetColumn.maxCards || targetColumn.notes.length < targetColumn.maxCards)) {
+                const noteIndex = sourceColumn.notes.indexOf(note);
+                sourceColumn.notes.splice(noteIndex, 1);
+                targetColumn.notes.push(note);
+            }
+        },
+
+
     }
 
 });
+ 
