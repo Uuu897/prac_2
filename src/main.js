@@ -45,5 +45,16 @@ const app = new Vue({
                 done: false
             });
         },
-    }
+        checkProgress(note, column) {
+            const doneItems = note.items.filter(item => item.done).length;
+            const totalItems = note.items.length;
+            const progress = doneItems / totalItems;
+
+            if (progress >= 1 && column.id < 3) {
+                this.moveNote(column.id, column.id + 1, note);
+                note.completedAt = new Date().toLocaleString();
+            } else if (progress >= 0.5 && column.id === 1) {
+                this.moveNote(column.id, column.id + 1, note);
+            }
+            }
 });
