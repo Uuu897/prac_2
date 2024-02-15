@@ -24,3 +24,20 @@ input {
     margin-bottom: 10px;
     background: rgba(233, 255, 199, 0.84);
 }
+button{
+    background: rgba(175, 29, 80, 40%);
+    width: 25%;
+}
+
+input-section{
+    height: 100px;
+    background: rgba(236, 255, 199, 0.84);
+    border-radius: 5px;
+    width: 410px;
+    height: auto;
+    padding-left: 10px;
+}
+
+li{
+    list-style-type:none
+}
