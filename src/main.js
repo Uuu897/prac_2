@@ -63,13 +63,16 @@ new Vue({
                 };
                 if (this.column1.length >= 3) {
                     alert('Первый столбец заполнен 3 карточками.');
+                    this.column1 = JSON.parse(localStorage.getItem('column1')) || [];
+                    this.column2 = JSON.parse(localStorage.getItem('column2')) || [];
+                    this.column3 = JSON.parse(localStorage.getItem('column3')) || [];
                     return;
                 }
                 if (!this.priority) {
                     alert('Укажите приоритет задачи.');
                     return;
                 }
-        
+
                 if (newCard.items.length < 3 || newCard.items.length > 5) {
                     alert('Пожалуйста, добавьте от 3 до 5 пунктов!');
                     return;
@@ -82,7 +85,7 @@ new Vue({
                 } else {
                     alert('Не более 5 пунктов!');
                 }
-        
+
                 if (this.priority === 1) {
                     this.prioritizedColumn1.push(newCard);
                 } else if (this.priority === 2) {
@@ -92,7 +95,7 @@ new Vue({
                     this.column3.push(newCard);
                     this.prioritizedColumn3.push(newCard);
                 }
-        
+
                 this.newCardTitle = '';
                 this.priority = 3;
                 this.newItemText = [''];
@@ -101,11 +104,9 @@ new Vue({
                 this.saveData();
             }
         },
-        // saveData() {
-        //     this.column1 = JSON.parse(localStorage.getItem('column1')) || [];
-        //     this.column2 = JSON.parse(localStorage.getItem('column2')) || [];
-        //     this.column3 = JSON.parse(localStorage.getItem('column3')) || [];
-        // },
+        saveData() {
+            localStorage.setItem(storageKey, JSON.stringify({ column1: this.column1, column2: this.column2, column3: this.column3 }));
+        },
         addItem() {
             this.newItemText.push('');
         }
