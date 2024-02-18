@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>Заметки</title>
     <link rel="stylesheet" href="css/main.css">
-    <script defer src="js/vue.js"></script>
-    <script defer src="js/main.js"></script>
+    <script defer src="src/vue.js"></script>
+    <script defer src="src/main.js"></script>
 </head>
 <body>
 <div id="app">
@@ -89,7 +89,7 @@
                     <li v-for="item in card.items" class="list-item-note" :key="item.id">
                         <label class="item">
                             <span :class="{ completed: item.completed }">{{ item.text }}</span>
-                            <input type="checkbox" v-model="item.completed" @change="handleCardPosition(card)" />
+                            <input :disabled="true" type="checkbox" v-model="item.completed" @change="handleCardPosition(card)" />
                         </label>
                     </li>
                 </ul>
