@@ -7,7 +7,6 @@ const initialData = storageData ? JSON.parse(storageData) : {
     column2: [],
     column3: [],
 };
-
 new Vue({
     el: '#app',
     data() {
