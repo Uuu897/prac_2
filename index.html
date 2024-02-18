@@ -1,44 +1,105 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="src/vue.js"></script>
-    <script defer src="src/main.js"></script>
-
     <title>Заметки</title>
     <link rel="stylesheet" href="css/main.css">
+    <script defer src="js/vue.js"></script>
+    <script defer src="js/main.js"></script>
 </head>
 <body>
-<h2>Оставь заметку</h2>
 <div id="app">
-    <div v-for="column in columns" :key="column.id" class="column">
-        <div v-for="note in column.notes" :key="note.id" class="note">
-            <h2>{{ note.title }}</h2>
-            <p>{{ note.content }}</p>
-            <ul>
-                <li v-for="(item, index) in note.items" :key="index">
-                    <input type="checkbox" v-model="item.done" @change="checkProgress(note, column)" :disabled="column.id === 1 && isFirstColumnBlocked">
-                    <input v-model="item.title" placeholder="" :disabled="column.id === 1 && isFirstColumnBlocked">
-                </li>
-            </ul>
-            <p v-if="note.completedAt">Completion time: {{ note.completedAt }}</p>
-        </div>
-        <div class="input-section">
-            <input v-model="newNoteTitle" placeholder="Название" v-if="column.id === 1 && !isFirstColumnBlocked">
-            <input v-model="newItemText" placeholder="Текст заметки" v-if="column.id === 1 && !isFirstColumnBlocked">
-        </div>
-        <div></div>
-        <div class="button-section">
-            <button v-if="column.id === 1 && (!column.maxCards || column.notes.length < column.maxCards) && !isFirstColumnBlocked" @click="addNote(column.id)">
-                Добавить заметку
-            </button>
-            <button @click="addItem(column.id)" v-if="column.id === 1 && (!column.maxCards || column.notes.length < column.maxCards) && !isFirstColumnBlocked">
-                Добавить строку
-            </button>
-        </div>
-</div>
-</div>
+    <div class="column">
+        <h2>Оставьте заметку</h2>
+        <button v-if="!showForm" @click="showForm = !showForm">Добавить заметку</button>
+        <button v-else @click="showForm = !showForm">Закрыть</button>
+        <form v-if="showForm" @submit.prevent="addCard">
+            <label for="card-title">Введите название заметки</label>
+            <input id="card-title" type="text" v-model="newCardTitle">
 
+            <p>
+                <label for="priority">Выберите приоритет заметки:</label>
+                <select id="priority" v-model.number="priority">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </p>
+
+            <button v-if="!showItemForm" @click="showItemForm = !showItemForm">Добавить пункты</button>
+            <div v-if="showItemForm">
+                <label for="card-title">Добавьте пункты к списку:</label>
+                <div v-for="(item, index) in newItemText" :key="index">
+                    <input type="text" v-model="newItemText[index]">
+                </div>
+                <button type="button" @click="addItem">Добавить пункт</button>
+            </div>
+
+            <button type="submit">Создать заметку</button>
+        </form>
+    </div>
+
+
+    <div class="column">
+        <ul>
+            <li v-for="card in prioritizedColumn1" :key="card.id" class="card list-item-card">
+
+                <h3>{{ card.title }}</h3>
+                <p>Приоритет: <span class="priority-badge" :class="`priority-${card.priority}`">{{ card.priority
+                    }}</span></p>
+                <ul>
+                    <li v-for=" item in card.items" class="list-item-note" :key="item.id">
+                        <label class="item">
+                            <span :class="{ completed: item.completed }">{{ item.text }}</span>
+                            <input type="checkbox" v-model="item.completed" @change="handleCardPosition(card)" />
+                        </label>
+                    </li>
+                </ul>
+
+        </ul>
+    </div>
+
+    <div class="column">
+        <ul>
+            <li v-for="card in prioritizedColumn2" :key="card.id" class="card list-item-card">
+
+                <h3>{{ card.title }}</h3>
+                <p>Приоритет: <span class="priority-badge" :class="`priority-${card.priority}`">{{ card.priority
+                    }}</span></p>
+                <ul>
+                    <li v-for=" item in card.items" class="list-item-note" :key="item.id">
+                        <label class="item">
+                            <span :class="{ completed: item.completed }">{{ item.text }}</span>
+                            <input type="checkbox" v-model="item.completed" @change="handleCardPosition(card)">
+                        </label>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="column">
+        <ul>
+            <li v-for="card in prioritizedColumn3" :key="card.id" class="card list-item-card">
+                <h3>{{ card.title }}</h3>
+                <p>Приоритет: <span class="priority-badge" :class="`priority-${card.priority}`">{{ card.priority
+                    }}</span></p>
+                <ul>
+                    <li v-for="item in card.items" class="list-item-note" :key="item.id">
+                        <label class="item">
+                            <span :class="{ completed: item.completed }">{{ item.text }}</span>
+                            <input type="checkbox" v-model="item.completed" @change="handleCardPosition(card)" />
+                        </label>
+                    </li>
+                </ul>
+                <div v-if="card.completedDate">
+                    Время завершения: {{ card.completedDate }}
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
 </body>
+
 </html>

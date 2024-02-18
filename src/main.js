@@ -1,94 +1,83 @@
-app = new Vue({
+new Vue({
     el: '#app',
-    data: {
-        columns: [
-            { id: 1, notes: [], maxCards: 3 },
-            { id: 2, notes: [], maxCards: 5 },
-            { id: 3, notes: [] }
-        ],
-        newNoteTitle: '',
-        newNoteContent: '',
-        newItemText: '',
-        isFirstColumnBlocked: false
+    data() {
+        return {
+            column1: JSON.parse(localStorage.getItem('column1')) || [],
+            column2: JSON.parse(localStorage.getItem('column2')) || [],
+            column3: JSON.parse(localStorage.getItem('column3')) || [],
+            newCardTitle: '',
+            newItemText: [],
+            priority: '',
+            showForm: false,
+            showItemForm: false,
+            column1SelectedSortMethod: '',
+            column2SelectedSortMethod: '',
+            column3SelectedSortMethod: '',
+        };
     },
-    methods:{
-        addNote(columnId){
-            const column = this.columns.find(col => col.id === columnId);
-            if(column && column.id === 1 && (!column.maxCards || column.notes.length < column.maxCards) && !this.isFirstColumnBlocked){
-                column.notes.push({
-                    title: this.newNoteTitle,
-                    content: this.newNoteContent,
-                    items: [
-                        { text: '', done: false, title: '' },
-                        { text: '', done: false, title: '' },
-                        { text: '', done: false, title: '' }
-                    ],
-                    completedAt: null
-                });
-                this.newNoteTitle = '';
-                this.newNoteContent = '';
-            }
+    computed: {
+        prioritizedColumn1() {
+            return this.column1.slice().sort((a, b) => b.priority - a.priority);
         },
-        addItem(columnId) {
-            const column = this.columns.find(col => col.id === columnId);
-            if (column && column.notes.length > 0) {
-                const note = column.notes[column.notes.length - 1];
-                note.items.push({ text: this.newItemText, done: false });
-                this.newItemText = '';
-            }
-
-
+        prioritizedColumn2() {
+            return this.column2.slice().sort((a, b) => b.priority - a.priority);
         },
-        addListItem(note) {
-            note.items.push({
-                text: '',
-                done: false
-            });
-        },
-        checkProgress(note, column) {
-            const doneItems = note.items.filter(item => item.done).length;
-            const totalItems = note.items.length;
-            const progress = doneItems / totalItems;
+        prioritizedColumn3() {
+            return this.column3.slice().sort((a, b) => b.priority - a.priority);
+        }
+    },
+    methods: {
+        handleCardPosition(card) {
+            const totalItems = card.items.length;
+            const completedItems = card.items.filter(item => item.completed).length;
 
-            if (progress >= 1 && column.id < 3) {
-                this.moveNote(column.id, column.id + 1, note);
-                note.completedAt = new Date().toLocaleString();
-            } else if (progress >= 0.5 && column.id === 1) {
-                this.moveNote(column.id, column.id + 1, note);
-            }
-
-            if (column.id === 1) {
-                let doneItemsFirstColumn = 0;
-                for (const note of this.columns[0].notes) {
-                    doneItemsFirstColumn += note.items.filter(item => item.done).length;
+            if (completedItems / totalItems > 0.5 && this.column1.includes(card)) {
+                if (this.column2.length < 5) {
+                    this.column1.splice(this.column1.indexOf(card), 1);
+                    this.column2.push(card);
+                } else {
+                    alert("Второй столбец переполнен");
                 }
-                this.doneItemsFirstColumn = doneItemsFirstColumn;
+            } else if (completedItems / totalItems === 1 && this.column2.includes(card)) {
+                this.column2.splice(this.column2.indexOf(card), 1);
+                this.column3.push(card);
+                card.completedDate = new Date().toLocaleString();
             }
-            let progressFirstColumn = this.doneItemsFirstColumn / totalItems
-
-            const secondColumn = this.columns.find(col => col.id === 2);
-            if (secondColumn.notes.length >= secondColumn.maxCards && progressFirstColumn >= 0.5) {
-                this.isFirstColumnBlocked = true
-
-            }
-            else {
-                this.isFirstColumnBlocked = false;
-
-            }
+            this.saveData();
         },
-
-        moveNote(sourceColumnId, targetColumnId, note) {
-            const sourceColumn = this.columns.find(col => col.id === sourceColumnId);
-            const targetColumn = this.columns.find(col => col.id === targetColumnId);
-            if (sourceColumn && targetColumn && (!targetColumn.maxCards || targetColumn.notes.length < targetColumn.maxCards)) {
-                const noteIndex = sourceColumn.notes.indexOf(note);
-                sourceColumn.notes.splice(noteIndex, 1);
-                targetColumn.notes.push(note);
+        addCard() {
+            if (this.newCardTitle !== '' && this.column1.length < 3) {
+                const newCard = {
+                    id: Date.now(),
+                    title: this.newCardTitle,
+                    items: this.newItemText.map(item => ({ text: item, completed: false }))
+                        .filter((item) => item.trim() !== ''),
+                    priority: this.priority,
+                };
+                if (!this.priority) {
+                    alert('Укажите приоритет задачи.');
+                    return;
+                }
+                if (newCard.items.length < 3) {
+                    alert("Пожалуйста, добавьте не менее 3-х пунктов, но не более 5!");
+                } else if (this.newCardTitle !== '' && newCard.items.length >= 3 && newCard.items.length <= 5) {
+                    this.column1.push(newCard);
+                    this.handleCardPosition(newCard);
+                    this.newCardTitle = '';
+                    this.newItemText = ['']
+                } else {
+                    alert("Не более 5 пунктов!");
+                }
             }
+            this.saveData();
         },
-
-
+        saveData() {
+            localStorage.setItem('column1', JSON.stringify(this.column1));
+            localStorage.setItem('column2', JSON.stringify(this.column2));
+            localStorage.setItem('column3', JSON.stringify(this.column3));
+        },
+        addItem() {
+            this.newItemText.push('');
+        }
     }
-
-});
- 
+})

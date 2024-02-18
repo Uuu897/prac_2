@@ -13,6 +13,7 @@ body {
     background: rgba(216, 227, 252, 0.84);
     border-radius: 10px;
     line-height: 1.5;
+    border: 1px solid #ccc;
 }
 
 .note {
@@ -26,18 +27,13 @@ input {
 }
 button{
     background: rgba(175, 29, 80, 40%);
-    width: 25%;
-}
-
-input-section{
-    height: 100px;
-    background: rgba(236, 255, 199, 0.84);
-    border-radius: 5px;
-    width: 410px;
-    height: auto;
-    padding-left: 10px;
+    width: 40%;
+    line-height: 1.5;
+    display: inline-flex;
 }
 
 li{
-    list-style-type:none
+    list-style-type:none;
+    margin-bottom: 5px;
+    background: rgba(233, 255, 199, 0.84);
 }
