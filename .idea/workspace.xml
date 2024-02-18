@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ab1eb43d-d7c5-45c4-a2e4-7f6328e1cf19" name="Changes" comment=".." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="6acf104f-b976-4e86-8b7b-54632108c82e" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2cO5sM5fO4LVda1qVQV32vgw0O7" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Rebasing main",
+    "last_opened_file_path": "C:/Users/Настя/WebstormProjects/dashs2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ab1eb43d-d7c5-45c4-a2e4-7f6328e1cf19" name="Changes" comment="" />
+      <created>1707969989849</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1707969989849</updated>
+      <workItem from="1707969990958" duration="10909000" />
+      <workItem from="1708118229197" duration="6443000" />
+      <workItem from="1708251784433" duration="1737000" />
+    </task>
+    <task id="LOCAL-00001" summary="начало работы">
+      <option name="closed" value="true" />
+      <created>1707970634991</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1707970634991</updated>
+    </task>
+    <task id="LOCAL-00002" summary="ойой, коммиты забыла,тут форма заметок">
+      <option name="closed" value="true" />
+      <created>1707975117174</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1707975117174</updated>
+    </task>
+    <task id="LOCAL-00003" summary="добавление элемента в список задач и vue">
+      <option name="closed" value="true" />
+      <created>1707975800167</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1707975800167</updated>
+    </task>
+    <task id="LOCAL-00004" summary="цвет для настроения">
+      <option name="closed" value="true" />
+      <created>1707976513781</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1707976513781</updated>
+    </task>
+    <task id="LOCAL-00005" summary="дописала проверку">
+      <option name="closed" value="true" />
+      <created>1707981752988</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1707981752988</updated>
+    </task>
+    <task id="LOCAL-00006" summary="метод и оформление">
+      <option name="closed" value="true" />
+      <created>1707981964227</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1707981964227</updated>
+    </task>
+    <task id="LOCAL-00007" summary="перенос заметок починился">
+      <option name="closed" value="true" />
+      <created>1707982415533</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1707982415533</updated>
+    </task>
+    <task id="LOCAL-00008" summary="это ужас, оно не работает">
+      <option name="closed" value="true" />
+      <created>1708240048944</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1708240048944</updated>
+    </task>
+    <task id="LOCAL-00009" summary="победа, оно работает">
+      <option name="closed" value="true" />
+      <created>1708250448484</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1708250448484</updated>
+    </task>
+    <task id="LOCAL-00010" summary="/">
+      <option name="closed" value="true" />
+      <created>1708251600804</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1708251600804</updated>
+    </task>
+    <task id="LOCAL-00011" summary="..">
+      <option name="closed" value="true" />
+      <created>1708252944084</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1708252944084</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="начало работы" />
+    <MESSAGE value="ойой, коммиты забыла,тут форма заметок" />
+    <MESSAGE value="добавление элемента в список задач и vue" />
+    <MESSAGE value="цвет для настроения" />
+    <MESSAGE value="дописала проверку" />
+    <MESSAGE value="метод и оформление" />
+    <MESSAGE value="перенос заметок починился" />
+    <MESSAGE value="это ужас, оно не работает" />
+    <MESSAGE value="победа, оно работает" />
+    <MESSAGE value="/" />
+    <MESSAGE value=".." />
+    <option name="LAST_COMMIT_MESSAGE" value=".." />
+  </component>
+</project>

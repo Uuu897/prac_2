@@ -1,0 +1,18 @@
+Index: css/main.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>body {\r\n    font-family: Arial;\r\n}\r\n\r\n#app {\r\n    display: flex;\r\n    justify-content: space-around;\r\n}\r\n.column {\r\n    padding: 10px;\r\n    width: 25%;\r\n    height: auto;\r\n    background: rgba(216, 227, 252, 0.84);\r\n    border-radius: 10px;\r\n    line-height: 1.5;\r\n    border: 1px solid #ccc;\r\n}\r\n\r\n.note {\r\n    margin-bottom: 10px;\r\n    padding: 10px;\r\n}\r\n\r\ninput {\r\n    margin-bottom: 10px;\r\n    background: rgba(233, 255, 199, 0.84);\r\n}\r\nbutton{\r\n    background: rgba(175, 29, 80, 40%);\r\n    width: 40%;\r\n    line-height: 1.5;\r\n    display: inline-flex;\r\n}\r\n\r\nli{\r\n    list-style-type:none;\r\n    margin-bottom: 5px;\r\n    background: rgba(233, 255, 199, 0.84);\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/css/main.css b/css/main.css
+--- a/css/main.css	(revision bc90b594d8c31d702869c8159dfd694d4baaf5eb)
++++ b/css/main.css	(date 1708251548443)
+@@ -29,7 +29,6 @@
+     background: rgba(175, 29, 80, 40%);
+     width: 40%;
+     line-height: 1.5;
+-    display: inline-flex;
+ }
+ 
+ li{
