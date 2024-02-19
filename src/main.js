@@ -75,19 +75,16 @@ new Vue({
                 if (newCard.items.length < 3 || newCard.items.length > 5) {
                     alert('Пожалуйста, добавьте от 3 до 5 пунктов!');
                     return;
-                }
-                else if (this.newCardTitle !== '' && newCard.items.length >= 3 && newCard.items.length <= 5) {
+                } else {
                     this.column1.push(newCard);
                     this.handleCardPosition(newCard);
                     this.newCardTitle = '';
                     this.newItemText = [''];
-                } else {
-                    alert('Не более 5 пунктов!');
                 }
 
-                if (this.priority === 1) {
+                if (this.priority === '1') {
                     this.prioritizedColumn1.push(newCard);
-                } else if (this.priority === 2) {
+                } else if (this.priority === '2') {
                     this.column2.push(newCard);
                     this.prioritizedColumn2.push(newCard);
                 } else {
@@ -96,7 +93,7 @@ new Vue({
                 }
 
                 this.newCardTitle = '';
-                this.priority = 3;
+                this.priority = '3';
                 this.newItemText = [''];
                 this.showForm = false;
                 this.showItemForm = false;
