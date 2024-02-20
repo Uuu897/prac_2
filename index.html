@@ -8,6 +8,7 @@
     <script defer src="src/vue.js"></script>
     <script defer src="src/main.js"></script>
 </head>
+
 <body>
 <div id="app">
     <div class="column">
@@ -27,7 +28,7 @@
                 </select>
             </p>
 
-            <button v-if="!showItemForm" @click="showItemForm = !showItemForm">Добавить пункты</button>
+            <button v-if="!showItemForm" @click="showItemsForm(); addItem()">Добавить пункты</button>
             <div v-if="showItemForm">
                 <label for="card-title">Добавьте пункты к списку:</label>
                 <div v-for="(item, index) in newItemText" :key="index">
@@ -42,57 +43,62 @@
 
 
     <div class="column">
-            <div v-for="card in prioritizedColumn1" :key="card.id" class="card list-item-card">
+        <div v-for="card in prioritizedColumn1" :key="card.id" class="card list-item-card">
 
-                <h3>{{ card.title }}</h3>
-                <p>Приоритет: <span class="priority-badge" :class="`priority-${card.priority}`">{{ card.priority
-                    }}</span></p>
-                <ul>
-                    <li v-for=" item in card.items" class="list-item-note" :key="item.id">
-                        <label class="item">
-                            <span :class="{ completed: item.completed }">{{ item.text }}</span>
-                            <input type="checkbox" v-model="item.completed" @change="handleCardPosition(card)" />
-                        </label>
-                    </li>
-                </ul>
-            </div>
+            <h3>{{ card.title }}</h3>
+            <p>Приоритет: <span class="priority-badge" :class="`priority-${card.priority}`">{{ card.priority
+                }}</span></p>
+            <ul>
+                <li v-for=" item in card.items" class="list-item-note" :key="item.id">
+                    <label class="item">
+                        <span :class="{ completed: item.completed }">{{ item.text }}</span>
+                        <input type="checkbox" v-model="item.completed" @change="handleCardPosition(card, item)"
+                               :disabled="!column1Prefs.isEditable" />
+                    </label>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <div class="column">
-            <div v-for="card in prioritizedColumn2" :key="card.id" class="card list-item-card">
+        <div v-for="card in prioritizedColumn2" :key="card.id" class="card list-item-card">
 
-                <h3>{{ card.title }}</h3>
-                <p>Приоритет: <span class="priority-badge" :class="`priority-${card.priority}`">{{ card.priority
-                    }}</span></p>
-                <ul>
-                    <li v-for=" item in card.items" class="list-item-note" :key="item.id">
-                        <label class="item">
-                            <span :class="{ completed: item.completed }">{{ item.text }}</span>
-                            <input type="checkbox" v-model="item.completed" @change="handleCardPosition(card)">
-                        </label>
-                    </li>
-                </ul>
-            </div>
+            <h3>{{ card.title }}</h3>
+            <p>Приоритет: <span class="priority-badge" :class="`priority-${card.priority}`">{{ card.priority
+                }}</span></p>
+            <ul>
+                <li v-for=" item in card.items" class="list-item-note" :key="item.id">
+                    <label class="item">
+                        <span :class="{ completed: item.completed }">{{ item.text }}</span>
+                        <input type="checkbox" v-model="item.completed"
+                               @change="handleCardPosition(card, item, $event)">
+                    </label>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <div class="column">
-            <div v-for="card in prioritizedColumn3" :key="card.id" class="card list-item-card">
-                <h3>{{ card.title }}</h3>
-                <p>Приоритет: <span class="priority-badge" :class="`priority-${card.priority}`">{{ card.priority
-                    }}</span></p>
-                <ul>
-                    <li v-for="item in card.items" class="list-item-note" :key="item.id">
-                        <label class="item">
-                            <span :class="{ completed: item.completed }">{{ item.text }}</span>
-                            <input :disabled="true" type="checkbox" v-model="item.completed" @change="handleCardPosition(card)" />
-                        </label>
-                    </li>
-                </ul>
-                <div v-if="card.completedDate">
-                    Время завершения: {{ card.completedDate }}
-                </div>
+        <div v-for="card in prioritizedColumn3" :key="card.id" class="card list-item-card">
+            <h3>{{ card.title }}</h3>
+            <p>Приоритет: <span class="priority-badge" :class="`priority-${card.priority}`">{{ card.priority
+                }}</span></p>
+            <ul>
+                <li v-for="item in card.items" class="list-item-note" :key="item.id">
+                    <label class="item">
+                        <span :class="{ completed: item.completed }">{{ item.text }}</span>
+                        <input :disabled="true" type="checkbox" v-model="item.completed"
+                               @change="handleCardPosition(card, item)" />
+                    </label>
+                </li>
+            </ul>
+            <div v-if="card.completedDate">
+                Время завершения: {{ card.completedDate }}
             </div>
+            <button class="delete-card-btn" @click="deleteCard(card.id)">Удалить карточку</button>
+        </div>
     </div>
+</div>
 </div>
 </body>
 
